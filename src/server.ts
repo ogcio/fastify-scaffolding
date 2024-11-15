@@ -18,12 +18,6 @@ export default async function buildServer(
     options: { ...options },
   });
 
-  server.register(fastifyEnv, {
-    schema: envSchema,
-    dotenv: true,
-    ...options,
-  });
-
   server.register(fastifyAutoload, {
     dir: join(import.meta.dirname, "routes"),
     autoHooks: true,

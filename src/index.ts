@@ -6,8 +6,11 @@ import buildServer from "./server.js";
 
 async function init() {
   const server = fastify(getLoggingConfiguration());
+
   server.register(fp(buildServer));
+
   await server.ready();
+
   closeWithGrace(
     { delay: server.config.FASTIFY_CLOSE_GRACE_DELAY },
     async ({ err }) => {
