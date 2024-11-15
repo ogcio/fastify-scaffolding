@@ -7,5 +7,6 @@ declare module "fastify" {
       FASTIFY_CLOSE_GRACE_DELAY: number;
       LOG_LEVEL: string;
     };
+    dirname: string;
   }
 }

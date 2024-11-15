@@ -1,4 +1,4 @@
-import path from "node:path";
+import { join } from "path";
 import fastifyAutoload from "@fastify/autoload";
 import fastifyEnv from "@fastify/env";
 import { initializeErrorHandler } from "@ogcio/fastify-error-handler";
@@ -12,9 +12,9 @@ export default async function buildServer(
 ) {
   initializeLoggingHooks(server);
   initializeErrorHandler(server);
-
+  server.decorate("dirname", import.meta.dirname);
   await server.register(fastifyAutoload, {
-    dir: path.join(import.meta.dirname, "plugins/external"),
+    dir: join(import.meta.dirname, "plugins/external"),
     options: { ...options },
   });
 
@@ -25,7 +25,7 @@ export default async function buildServer(
   });
 
   server.register(fastifyAutoload, {
-    dir: path.join(import.meta.dirname, "routes"),
+    dir: join(import.meta.dirname, "routes"),
     autoHooks: true,
     cascadeHooks: true,
     options: { ...options },
