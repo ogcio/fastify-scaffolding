@@ -1,6 +1,5 @@
 import fastifyUnderPressure from "@fastify/under-pressure";
 import type { FastifyReply, FastifyRequest } from "fastify";
-import createHttpError from "http-errors";
 import v8 from "v8";
 
 export const autoConfig = {
@@ -10,11 +9,11 @@ export const autoConfig = {
   maxEventLoopUtilization: 0.98,
   pressureHandler: (
     _req: FastifyRequest,
-    _rep: FastifyReply,
+    rep: FastifyReply,
     type: string,
     value: number | string | undefined | null,
   ) => {
-    throw createHttpError.ServiceUnavailable(
+    throw rep.serviceUnavailable(
       `System is under pressure. Pressure type: ${type}. Pressure value: ${value}`,
     );
   },
