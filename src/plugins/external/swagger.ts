@@ -1,14 +1,10 @@
 import fs from "fs";
 import { join } from "path";
 import fastifySwagger from "@fastify/swagger";
-import fastifySwaggerUi, {
-  type FastifySwaggerUiOptions,
-} from "@fastify/swagger-ui";
+import fastifySwaggerUi from "@fastify/swagger-ui";
 import type { FastifyInstance, FastifyPluginAsync } from "fastify";
 import fp from "fastify-plugin";
 import { getPackageInfo } from "../../utils/get-package-info.js";
-
-export const autoConfig: FastifySwaggerUiOptions = {};
 
 export default fp(
   async (fastify: FastifyInstance, opts: FastifyPluginAsync) => {
