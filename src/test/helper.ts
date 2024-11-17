@@ -6,7 +6,7 @@ declare module "fastify" {
   interface FastifyInstance {}
 }
 
-const AppPath = path.join(import.meta.dirname, "../server.js");
+const AppPath = path.join(import.meta.dirname, "../server.ts");
 
 export function config() {
   return {
