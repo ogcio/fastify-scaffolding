@@ -20,6 +20,8 @@ export default async function buildServer(
     dir: join(import.meta.dirname, "routes"),
     autoHooks: true,
     cascadeHooks: true,
+    // ignore the files that starts with shared or utils
+    ignorePattern: /^(shared|utils)\-?(.+)?\.ts$/,
     options: { ...options },
   });
 }
