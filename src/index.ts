@@ -1,3 +1,4 @@
+import type { TypeBoxTypeProvider } from "@fastify/type-provider-typebox";
 import { getLoggingConfiguration } from "@ogcio/fastify-logging-wrapper";
 import closeWithGrace from "close-with-grace";
 import fastify from "fastify";
@@ -5,7 +6,9 @@ import fp from "fastify-plugin";
 import buildServer from "./server.js";
 
 export async function initializeServer() {
-  const server = fastify(getLoggingConfiguration());
+  const server = fastify(
+    getLoggingConfiguration(),
+  ).withTypeProvider<TypeBoxTypeProvider>();
   server.register(fp(buildServer));
   await server.ready();
 
