@@ -29,6 +29,7 @@ async function init() {
   try {
     await server.listen({
       port: server.config.PORT,
+      host: "0.0.0.0",
     });
   } catch (err) {
     server.log.error(err);
