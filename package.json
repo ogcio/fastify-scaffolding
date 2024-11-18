@@ -7,7 +7,6 @@
     "start": "node dist/index.js",
     "dev": "FASTIFY_AUTOLOAD_TYPESCRIPT=1 node --watch --import tsx src/index.ts",
     "build": "rm -rf dist && tsc -p tsconfig.prod.json && cp -R src/public dist/public",
-    "build:test": "rm -rf dist && tsc -p tsconfig.json && cp -R src/public dist/public",
     "check:formatting": "biome format",
     "fix:formatting": "biome format --write",
     "check:linting": "biome lint",
