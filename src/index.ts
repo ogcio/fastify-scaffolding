@@ -11,6 +11,7 @@ export async function initializeServer() {
   ).withTypeProvider<TypeBoxTypeProvider>();
   server.register(fp(buildServer));
   await server.ready();
+  await server.swagger();
 
   closeWithGrace(
     { delay: server.config.FASTIFY_CLOSE_GRACE_DELAY },
