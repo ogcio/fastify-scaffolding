@@ -5,7 +5,7 @@ export default defineConfig({
     reporters: "default",
     coverage: {
       reporter: ["text"],
-      provider: "istanbul",
+      provider: "v8",
     },
     include: [
       "./src/@(test?(s)|__test?(s)__)/**/*.test.@(js|cjs|mjs|tap|cts|jsx|mts|ts|tsx)",
