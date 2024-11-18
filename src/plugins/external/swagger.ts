@@ -1,18 +1,10 @@
 import fs from "fs";
-import { dirname, join } from "path";
-import { fileURLToPath } from "url";
+import { join } from "path";
 import fastifySwagger from "@fastify/swagger";
-import fastifySwaggerUi, {
-  type FastifySwaggerUiOptions,
-} from "@fastify/swagger-ui";
+import fastifySwaggerUi from "@fastify/swagger-ui";
 import type { FastifyInstance, FastifyPluginAsync } from "fastify";
 import fp from "fastify-plugin";
 import { getPackageInfo } from "../../utils/get-package-info.js";
-
-export const autoConfig: FastifySwaggerUiOptions = {};
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
 
 export default fp(
   async (fastify: FastifyInstance, opts: FastifyPluginAsync) => {
@@ -47,7 +39,9 @@ export default fp(
       logo: {
         type: "image/png",
         content: Buffer.from(
-          fs.readFileSync(join(__dirname, "logo.png")).toString("base64"),
+          fs
+            .readFileSync(join(fastify.dirname, "public", "logo.png"))
+            .toString("base64"),
           "base64",
         ),
       },
