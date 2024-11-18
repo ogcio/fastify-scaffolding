@@ -1,10 +1,19 @@
-import { assert, describe, test, vi } from "vitest";
+import { assert, afterAll, describe, expect, test, vi } from "vitest";
 import { getPackageInfo } from "../../utils/get-package-info.js";
+
+const throwErrorTestName = "throw-error";
+let currentTest: string;
 
 vi.mock("path", () => {
   return {
     default: {
-      resolve: (filename: string) => `the/path/${filename}`,
+      resolve: (filename: string) => {
+        if (currentTest === throwErrorTestName) {
+          throw new Error(`File does not exist: ${filename}`);
+        }
+
+        return `the/path/${filename}`;
+      },
     },
   };
 });
@@ -18,10 +27,22 @@ vi.mock("fs", () => {
 });
 
 describe("Get package info works as expected", {}, async () => {
-  test("extracts the correct data", async () => {
+  afterAll(() => {
+    vi.restoreAllMocks();
+  });
+
+  test.sequential("extracts the correct data", async () => {
+    currentTest = "successful-one";
     const packageInfo = await getPackageInfo();
 
     assert.deepStrictEqual("x.x.x", packageInfo.version);
     assert.deepStrictEqual("test-mock", packageInfo.name);
+  });
+
+  test.sequential("throws error if file not found", async () => {
+    currentTest = throwErrorTestName;
+    await expect(() => getPackageInfo()).rejects.toThrowError(
+      "File does not exist: package.json",
+    );
   });
 });

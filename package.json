@@ -13,7 +13,7 @@
     "check:linting": "biome lint",
     "fix:linting": "biome lint --write",
     "prepare": "husky || true",
-    "test": "NODE_OPTIONS='--import tsx' vitest run --reporter junit --coverage --outputFile=results.xml"
+    "test": "NODE_OPTIONS='--import tsx' vitest run --reporter junit --reporter default --coverage --outputFile=results.xml"
   },
   "dependencies": {
     "@fastify/autoload": "^6.0.2",

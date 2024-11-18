@@ -2,7 +2,6 @@ import { promises as fs } from "fs";
 import path from "path";
 import { httpErrors } from "@fastify/sensible";
 import { getErrorMessage } from "@ogcio/shared-errors";
-import { isHttpError } from "http-errors";
 
 export async function getPackageInfo(): Promise<{
   version: string;
@@ -21,9 +20,6 @@ export async function getPackageInfo(): Promise<{
     // Log or return the parsed content
     return { version: packageJson.version, name: packageJson.name };
   } catch (err) {
-    if (isHttpError(err)) {
-      throw err;
-    }
     throw httpErrors.internalServerError(getErrorMessage(err));
   }
 }
