@@ -10,6 +10,7 @@ export default async function buildServer(
 ) {
   initializeLoggingHooks(server);
   initializeErrorHandler(server);
+
   server.decorate("dirname", import.meta.dirname);
 
   await server.register(fastifyAutoload, {
