@@ -11,6 +11,7 @@ export default async function buildServer(
   initializeLoggingHooks(server);
   initializeErrorHandler(server);
   server.decorate("dirname", import.meta.dirname);
+
   await server.register(fastifyAutoload, {
     dir: join(import.meta.dirname, "plugins/external"),
     options: { ...options },
@@ -21,7 +22,7 @@ export default async function buildServer(
     autoHooks: true,
     cascadeHooks: true,
     // ignore the files that starts with shared or utils
-    ignorePattern: /^(shared|utils)\-?(.+)?\.ts$/,
+    ignorePattern: /.*(shared|utils)\-?(.+)?\.(t|j)s$/,
     options: { ...options },
   });
 }

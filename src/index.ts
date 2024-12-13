@@ -7,11 +7,13 @@ import buildServer from "./server.js";
 
 export async function initializeServer() {
   const server = fastify(
-    getLoggingConfiguration(),
+    getLoggingConfiguration({
+      additionalLoggerConfigs: { level: process.env.LOG_LEVEL ?? "debug" },
+    }),
   ).withTypeProvider<TypeBoxTypeProvider>();
   server.register(fp(buildServer));
   await server.ready();
-  await server.swagger();
+  //await server.swagger();
 
   closeWithGrace(
     { delay: server.config.FASTIFY_CLOSE_GRACE_DELAY },
