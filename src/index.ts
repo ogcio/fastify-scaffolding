@@ -7,7 +7,9 @@ import buildServer from "./server.js";
 
 export async function initializeServer() {
   const server = fastify(
-    getLoggingConfiguration(),
+    getLoggingConfiguration({
+      additionalLoggerConfigs: { level: process.env.LOG_LEVEL ?? "debug" },
+    }),
   ).withTypeProvider<TypeBoxTypeProvider>();
   server.register(fp(buildServer));
   await server.ready();

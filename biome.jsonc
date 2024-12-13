@@ -24,6 +24,9 @@
       "correctness": {
         "noUnusedVariables": {
           "level": "error"
+        },
+        "noUnusedImports": {
+          "level": "error"
         }
       },
       "style": {

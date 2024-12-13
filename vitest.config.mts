@@ -1,4 +1,4 @@
-import { defineConfig } from "vitest/config";
+import { defaultExclude, defineConfig } from "vitest/config";
 
 export default defineConfig({
   test: {
@@ -6,6 +6,7 @@ export default defineConfig({
     coverage: {
       reporter: ["text"],
       provider: "v8",
+      exclude: [...defaultExclude, "commitlint.config.js", "src/test/**/*.ts"],
     },
     include: [
       "./src/@(test?(s)|__test?(s)__)/**/*.test.@(js|cjs|mjs|tap|cts|jsx|mts|ts|tsx)",
