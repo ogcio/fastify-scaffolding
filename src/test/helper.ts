@@ -1,28 +1,17 @@
-import path from "node:path";
-import type { FastifyInstance } from "fastify";
-import { build as buildApplication } from "fastify-cli/helper.js";
+import type { TypeBoxTypeProvider } from "@fastify/type-provider-typebox";
+import fastify from "fastify";
+import fp from "fastify-plugin";
+import buildServer from "../server.js";
 
 declare module "fastify" {
   interface FastifyInstance {}
 }
 
-const AppPath = path.join(import.meta.dirname, "../server.ts");
-
-export function config() {
-  return {
-    skipOverride: "true",
-  };
-}
-
 // automatically build and tear down our instance
 export async function build() {
-  // you can set all the options supported by the fastify CLI command
-  const argv = [AppPath];
+  const app = fastify().withTypeProvider<TypeBoxTypeProvider>();
 
-  // fastify-plugin ensures that all decorators
-  // are exposed for testing purposes, this is
-  // different from the production setup
-  const app = (await buildApplication(argv, config(), {})) as FastifyInstance;
+  app.register(fp(buildServer));
 
   return app;
 }
