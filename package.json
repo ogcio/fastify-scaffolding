@@ -22,6 +22,7 @@
     "@fastify/swagger-ui": "^5.2.3",
     "@fastify/type-provider-typebox": "^6.1.0",
     "@fastify/under-pressure": "^9.0.3",
+    "@ogcio/shared-errors": "^1.1.0",
     "@ogcio/fastify-error-handler": "^5.2.1",
     "@ogcio/fastify-logging-wrapper": "^5.1.0",
     "@sinclair/typebox": "^0.34.41",
