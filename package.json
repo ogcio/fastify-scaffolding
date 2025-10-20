@@ -17,13 +17,13 @@
     "db:drop": "tsx --env-file=.env ./src/migrations/scripts/run-drop-database.ts",
     "db:migrate": "tsx --env-file=.env ./src/migrations/scripts/run-migrate-database.ts",
     "db:rollback": "tsx --env-file=.env ./src/migrations/scripts/run-migrate-database.ts -- version=0",
-    "db:seed": "tsx --env-file=.env seed-db.mjs",
     "db:create-ci": "node ./dist/migrations/scripts/run-create-database.js",
     "db:migrate-ci": "node ./dist/migrations/scripts/run-migrate-database.js"
   },
   "dependencies": {
     "@fastify/autoload": "^6.3.1",
     "@fastify/env": "^5.0.3",
+    "@fastify/postgres": "^6.0.2",
     "@fastify/sensible": "^6.0.3",
     "@fastify/swagger": "^9.5.2",
     "@fastify/swagger-ui": "^5.2.3",

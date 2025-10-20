@@ -36,12 +36,14 @@ Copy the `.env.sample` to `.env` file and set your values.
 
 ### Database Setup
 
+**Please note**: if you want to enable PG integration, go to [PG plugin](./src/plugins/external/pg.ts) and uncomment the code there.
+
 ```bash
 # Create database
-pnpm run migrate:create-db
+pnpm db:create
 
 # Run migrations
-pnpm run migrate
+pnpm db:migrate
 ```
 
 ### Development
@@ -81,6 +83,7 @@ src/
 ├── instrumentation.ts    # OpenTelemetry setup
 ├── plugins/
 │   └── external/         # External plugins (env, swagger, etc.)
+│   └── internal/         # Internal plugins (logger, error handler, etc.)
 ├── routes/
 │   ├── healthcheck.ts    # Health check endpoint
 │   └── examples/         # Example API routes
