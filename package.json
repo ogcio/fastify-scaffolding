@@ -12,7 +12,14 @@
     "lint:check": "biome lint",
     "lint": "biome lint --write",
     "prepare": "husky || true",
-    "test": "NODE_OPTIONS='--import tsx' vitest run --reporter junit --reporter default --coverage --outputFile=results.xml"
+    "test": "NODE_OPTIONS='--import tsx' vitest run --reporter junit --reporter default --coverage --outputFile=results.xml",
+    "db:create": "tsx --env-file=.env ./src/migrations/scripts/run-create-database.ts",
+    "db:drop": "tsx --env-file=.env ./src/migrations/scripts/run-drop-database.ts",
+    "db:migrate": "tsx --env-file=.env ./src/migrations/scripts/run-migrate-database.ts",
+    "db:rollback": "tsx --env-file=.env ./src/migrations/scripts/run-migrate-database.ts -- version=0",
+    "db:seed": "tsx --env-file=.env seed-db.mjs",
+    "db:create-ci": "node ./dist/migrations/scripts/run-create-database.js",
+    "db:migrate-ci": "node ./dist/migrations/scripts/run-migrate-database.js"
   },
   "dependencies": {
     "@fastify/autoload": "^6.3.1",
