@@ -1,27 +1,21 @@
-import { randomBytes, randomUUID } from "node:crypto";
+import { randomUUID } from "node:crypto";
 import type { StartedPostgreSqlContainer } from "@testcontainers/postgresql";
 import { EnvKeys } from "../plugins/external/env.js";
 import {
   DATABASE_TEST_URL_KEY,
   dropContainer,
-  migrateContainer,
-  startPostgresContainer,
 } from "./build-testcontainer-pg.js";
 
-let postgresContainer: StartedPostgreSqlContainer | null = null;
+const postgresContainer: StartedPostgreSqlContainer | null = null;
 
 export async function setup() {
-  // Start PostgreSQL container
-  postgresContainer = await startPostgresContainer();
-  await migrateContainer(postgresContainer);
+  /** Uncomment this if you want to setup db during tests */
+  // postgresContainer = await startPostgresContainer();
+  // await migrateContainer(postgresContainer);
   // This line is used by the pg library to connect to the database when doing tests
   // https://github.com/fastify/fastify-postgres?tab=readme-ov-file#custom-postgres-approach
-  process.env[DATABASE_TEST_URL_KEY] = postgresContainer.getConnectionUri();
+  // process.env[DATABASE_TEST_URL_KEY] = postgresContainer.getConnectionUri();
   setVariablesToRunWithoutEnvFile();
-
-  // Custom env vars
-  process.env.EMAIL_PROVIDER_SMTP_ENCRYPTION_KEY =
-    randomBytes(32).toString("base64");
 }
 
 export async function teardown() {
@@ -34,7 +28,7 @@ export async function teardown() {
 }
 
 const customEnvValues: Record<string, string> = {
-  WEBHOOK_URL_BASE: "http://localhost:1000",
+  HOST_URL: "http://localhost:1000",
 };
 
 async function setVariablesToRunWithoutEnvFile() {
