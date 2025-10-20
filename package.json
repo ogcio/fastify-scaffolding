@@ -29,13 +29,17 @@
     "@sinclair/typebox": "^0.34.41",
     "close-with-grace": "^2.3.0",
     "fastify": "^5.6.1",
-    "fastify-plugin": "^5.1.0"
+    "fastify-plugin": "^5.1.0",
+    "pg": "^8.16.3",
+    "postgrator": "^8.0.0"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.2.6",
     "@commitlint/config-conventional": "^20.0.0",
+    "@testcontainers/postgresql": "^11.7.1",
     "@types/http-errors": "^2.0.5",
     "@vitest/coverage-v8": "^3.2.4",
+    "@types/pg": "^8.15.5",
     "commitlint": "^20.1.0",
     "fastify-cli": "^7.4.0",
     "husky": "^9.1.7",

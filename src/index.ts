@@ -2,7 +2,7 @@ import { writeFile } from "node:fs/promises";
 import type { TypeBoxTypeProvider } from "@fastify/type-provider-typebox";
 import { getLoggingConfiguration } from "@ogcio/fastify-logging-wrapper";
 import closeWithGrace from "close-with-grace";
-import fastify, { FastifyInstance } from "fastify";
+import fastify, { type FastifyInstance } from "fastify";
 import fp from "fastify-plugin";
 import buildServer from "./server.js";
 
