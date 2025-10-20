@@ -1,6 +1,6 @@
+import { buildTestServer } from "../build-test-server.js";
 import type { FastifyInstance } from "fastify";
 import { assert, afterEach, describe, test } from "vitest";
-import { build } from "../helper.js";
 
 describe("Healthcheck works as expected", {}, () => {
   let app: FastifyInstance | undefined;
@@ -12,7 +12,7 @@ describe("Healthcheck works as expected", {}, () => {
   });
 
   test("GET /", async () => {
-    const app = await build();
+    const app = await buildTestServer();
     const res = await app.inject({
       url: "/health",
     });
