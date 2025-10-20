@@ -70,9 +70,8 @@ Once the server is running, you can access:
 - `pnpm run test` - Run test suite with coverage
 - `pnpm run lint` - Run linter and auto-fix issues
 - `pnpm run format` - Format code with Biome
-- `pnpm run migrate` - Run database migrations
-- `pnpm run migrate:create-db` - Create database
-- `pnpm run migrate:drop-db` - Drop database
+
+For the other scripts, check [package.json](package.json).
 
 ## Project Structure
 
@@ -125,12 +124,11 @@ pnpm run test:watch
 ### Building the Image
 
 ```bash
-docker build -t fastify-scaffolding:latest --build-arg "PORT=3333" .
+docker build -t fastify-scaffolding:latest --build-arg "PORT={your port}" .
 ```
 
 ### Running with Docker
 
 ```bash
-docker run -p 3333:3333 --env-file .env
-  --rm fastify-scaffolding:latest
+docker run -p {your port}:{your port} --env-file .env --name fastify-scaffolding --rm fastify-scaffolding:latest
 ```
