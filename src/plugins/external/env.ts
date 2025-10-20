@@ -94,7 +94,7 @@ const schema = {
 
 export const autoConfig = {
   schema,
-  dotenv: true,
+  dotenv: { debug: false, quiet: true },
 };
 
 export default env;
