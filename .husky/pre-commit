@@ -1,2 +1,2 @@
-npm run check:formatting
-npm run check:linting
+npm run format:check
+npm run lint:check
